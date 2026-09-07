@@ -1,19 +1,22 @@
-// matmul_optimized.cpp — 3x4 register-tiled experiment
+/////////////////////////////////////////////////
+// speed is 26x 
 
 #include <algorithm>
 #include <immintrin.h>
 #include "matmul.h"
 
+// sreesti value - 36 , 36 , 64
+// final value set - 48 , 48 , 96
 #ifndef M_BLOCK
-#define M_BLOCK 36
+#define M_BLOCK 48
 #endif
 
 #ifndef N_BLOCK
-#define N_BLOCK 16
+#define N_BLOCK 48
 #endif
 
 #ifndef PREFETCH_DISTANCE
-#define PREFETCH_DISTANCE 64
+#define PREFETCH_DISTANCE 96
 #endif
 
 #ifndef PREFETCH_HINT
@@ -265,7 +268,7 @@ void matmul_optimized(
                     c2[j + 2] = sum22;
                     c2[j + 3] = sum23;
                 }
-
+	/*
                 // Remaining columns in the N block.
                 for (; j < j_end; ++j) {
                     const float* b =
@@ -303,8 +306,8 @@ void matmul_optimized(
                     c1[j] = sum1;
                     c2[j] = sum2;
                 }
+                */
             }
-
             // One or two leftover rows.
             for (; i < i_end; ++i) {
                 const float* a =

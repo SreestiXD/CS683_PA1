@@ -1,7 +1,7 @@
 
 #include "convolution.h"
 
-#define TILE_SIZE 128
+#define TILE_SIZE 8
 
 void conv_tile(const float* in, float* out, const float* ker,
                int H, int W, int K) {
